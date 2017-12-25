@@ -133,12 +133,30 @@ class VicWord
                 $v[1] += $w;
                 return $v;
             }, $sr);
-            if ($sr) {
-                $r = array_merge($r, $sr);
-            } else {
-                $r = array_merge($r, $p);
+            $r = array_merge($r, $this->getGoodWord($p,$sr));
+        }
+    }
+
+    private function getGoodWord($old,$new){
+        if(!$new){
+            return $old;
+        }
+        if($this->getUnknowCount($old) > $this->getUnknowCount($new)){
+            return $new;
+        }else{
+            return $old;
+        }
+
+    }
+
+    private function getUnknowCount($ar){
+        $i = 0;
+        foreach ($ar as $v){
+            if($v[3] == 0){
+                $i+=strlen($v[0]);
             }
         }
+        return $i;
     }
 
 
