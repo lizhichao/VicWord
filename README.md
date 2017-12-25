@@ -22,7 +22,7 @@ $fc->getAutoWord('北京大学生喝进口红酒，在北京大学生活区喝�
 
 ```
 ### 分词速度
-机器阿里云 `Intel(R) Xeon(R) Platinum 8163 CPU @ 2.50GHz` 
+机器阿里云 `Intel(R) Xeon(R) Platinum 8163 CPU @ 2.50GHz`   
 `getWord` 每秒140w字  
 `getShortWord` 每秒138w字  
 `getAutoWord` 每秒40w字  
