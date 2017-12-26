@@ -63,6 +63,6 @@ $dict->save();
 ### 缺点
 词库太占内存了，主要是php数组太浪费内存了。
 
-###  在线体验 
-[在线体验](http://blogs.yxsss.com/my/fc)
+### demo 
+[demo](http://blogs.yxsss.com/my/fc)
 
