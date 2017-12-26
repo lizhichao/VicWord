@@ -13,9 +13,7 @@ class VicWord
     private $end = '\\';
 
     private $auto = false;
-
-    private $count = 0;
-
+    
     /**
      * @var string 词性
      */
@@ -115,7 +113,6 @@ class VicWord
                 break;
             }
         }
-        $this->count++;
         $l = strlen($str);
         if (isset($r[$i - 1])) {
             $w = $r[$i - 1][1];
