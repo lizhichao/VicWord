@@ -21,6 +21,9 @@ $arr =  $fc->getShortWord('北京大学生喝进口红酒，在北京大学生�
 $arr = $fc->getAutoWord('北京大学生喝进口红酒，在北京大学生活区喝进口红酒');
 //北京|大学生|喝|进口|红酒|，|在|北京大学|生活区|喝|进口|红酒
 
+//嘚瑟一下
+//这两句话qq的分词和百度的分词居然没有分对 http://nlp.qq.com/semantic.cgi#page2 http://ai.baidu.com/tech/nlp/lexical
+
 ```
 ### 分词速度
 机器阿里云 `Intel(R) Xeon(R) Platinum 8163 CPU @ 2.50GHz`   

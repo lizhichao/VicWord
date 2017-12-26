@@ -13,7 +13,7 @@ class VicWord
     private $end = '\\';
 
     private $auto = false;
-    
+
     /**
      * @var string 词性
      */
