@@ -1,0 +1,23 @@
+{
+    "name": "xu42/vic-word",
+    "description": "vic word",
+    "type": "library",
+    "license": "Apache 2.0",
+    "keywords": [
+        "vic",
+        "word"
+    ],
+    "homepage": "https://github.com/xu42/VicWord",
+    "authors": [
+        {
+            "name": "xu42",
+            "email": "xu42.cn@gmail.com",
+            "homepage": "https://xu42.cn"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Xu42\\VicWord\\": "src/"
+        }
+    }
+}
