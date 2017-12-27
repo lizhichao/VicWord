@@ -1,0 +1,20 @@
+{
+    "name": "vic/word",
+    "description": "This is a participle library",
+    "type": "library",
+    "license": "Apache 2",
+    "authors": [
+        {
+            "name": "tanszhe",
+            "email": "1018595261@qq.com"
+        }
+    ],
+    "require": {
+        "php" : ">=5.3.0"
+    },
+    "autoload" : {
+        "psr-4" : {
+            "Vic\\Word\\" : "Lib"
+        }
+    }
+}

@@ -6,6 +6,9 @@
  * Date: 2017/12/21
  * Time: 下午8:11
  */
+
+namespace Vic\Word;
+
 class VicWord
 {
     private $dict = [];
