@@ -7,7 +7,7 @@
  * Time: 下午8:11
  */
 
-namespace Vic\Word;
+namespace Lizhichao;
 
 class VicWord
 {

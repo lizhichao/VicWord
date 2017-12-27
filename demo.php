@@ -8,10 +8,10 @@
 //定义词典文件路径
 define('_VIC_WORD_DICT_PATH_',__DIR__.'/Data/dict.igb');
 
-require __DIR__.'/Lib/VicWord.php';
+require __DIR__.'/vendor/autoload.php';
 
 //type: 词典格式
-$fc = new VicWord('igb');
+$fc = new
 
 //长度优先分词
 $ar = $fc->getWord('聚知台是一个及时沟通工具');

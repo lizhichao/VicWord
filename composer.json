@@ -1,5 +1,5 @@
 {
-    "name": "lizhichao/word",
+    "name": "lizhichao",
     "description": "This is a participle library",
     "type": "library",
     "license": "Apache 2",
@@ -14,7 +14,7 @@
     },
     "autoload" : {
         "psr-4" : {
-            "Vic\\Word\\" : "Lib"
+            "Lizhichao\\" : "Lib"
         }
     }
 }

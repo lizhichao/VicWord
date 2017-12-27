@@ -6,7 +6,7 @@
  * Date: 2017/12/21
  * Time: 下午8:16
  */
-namespace Vic\Word;
+namespace Lizhichao;
 
 class VicDict
 {
