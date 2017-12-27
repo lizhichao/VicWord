@@ -10,8 +10,11 @@ define('_VIC_WORD_DICT_PATH_',__DIR__.'/Data/dict.igb');
 
 require __DIR__.'/vendor/autoload.php';
 
+use Lizhichao\VicWord;
+
+
 //type: 词典格式
-$fc = new
+$fc = new VicWord('igb');
 
 //长度优先分词
 $ar = $fc->getWord('聚知台是一个及时沟通工具');
