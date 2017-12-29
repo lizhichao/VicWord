@@ -6,8 +6,6 @@
  * Date: 2017/12/21
  * Time: 下午8:16
  */
-namespace Lizhichao\Word;
-
 class VicDict
 {
     private $word = [];
@@ -87,7 +85,7 @@ class VicDict
 
     private function filter($word)
     {
-        return str_replace(["\n", ' '], '', trim($word));
+        return str_replace(["\n", "\t"], '', trim($word));
     }
 
 

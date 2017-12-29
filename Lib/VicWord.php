@@ -6,9 +6,6 @@
  * Date: 2017/12/21
  * Time: 下午8:11
  */
-
-namespace Lizhichao\Word;
-
 class VicWord
 {
     private $dict = [];
@@ -16,6 +13,8 @@ class VicWord
     private $end = '\\';
 
     private $auto = false;
+
+    private $count = 0;
 
     /**
      * @var string 词性
@@ -65,9 +64,9 @@ class VicWord
     }
 
 
-    public function filter($str)
+    private function filter($str)
     {
-        return trim($str);
+        return strtolower(trim($str));
     }
 
 
@@ -116,6 +115,7 @@ class VicWord
                 break;
             }
         }
+        $this->count++;
         $l = strlen($str);
         if (isset($r[$i - 1])) {
             $w = $r[$i - 1][1];
