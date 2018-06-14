@@ -8,7 +8,7 @@
 //定义词典文件路径
 define('_VIC_WORD_DICT_PATH_',__DIR__.'/Data/dict.igb');
 
-require __DIR__.'/vendor/autoload.php';
+require __DIR__.'/../../vendor/autoload.php';
 
 use Lizhichao\Word\VicWord;
 
