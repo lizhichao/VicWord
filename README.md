@@ -6,6 +6,9 @@
 composer require lizhichao/word
 ```
 
+## tips
+[一个极简的高性能框架，可在php-fpm或者swoole异步协程环境运行](https://github.com/lizhichao/one)
+
 ## 分词说明
 - 含有3种切分方法
     - `getWord` 长度优先切分 。最快
@@ -71,4 +74,6 @@ $dict->save();
 
 ## demo 
 [demo](http://blogs.yxsss.com/my/fc)
+
+
 
