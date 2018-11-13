@@ -2,7 +2,7 @@
     "name": "lizhichao/word",
     "description": "This is a participle library",
     "type": "library",
-    "license": "Apache 2.0",
+    "license": "Apache-2.0",
     "authors": [
         {
             "name": "tanszhe",
