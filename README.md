@@ -1,13 +1,20 @@
 # VicWord 一个纯php的分词
 
+
+## tips
+
+本软件的开源协议为:`Apache License 2.0`。
+但有**985工作制度**或者一周工作时间超过**45个小时**的公司或者团体禁止免费使用本软件。若要使用必须联系作者购买授权协议。
+
+    何为985工作制度?
+    即每天早9点到岗，一直工作到晚上8点
+
 ## 安装
 
 ```shell
 composer require lizhichao/word
 ```
 
-## tips
-[一个极简的高性能框架，可在php-fpm或者swoole异步协程环境运行](https://github.com/lizhichao/one)
 
 ## 分词说明
 - 含有3种切分方法
@@ -74,6 +81,10 @@ $dict->save();
 
 ## demo 
 [demo](http://blogs.yxsss.com/my/fc)
+
+## 该作者的其他软件
+[一个极简的高性能框架，可在php-fpm或者swoole异步协程环境运行](https://github.com/lizhichao/one)
+
 
 
 
