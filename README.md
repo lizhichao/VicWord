@@ -1,5 +1,6 @@
 # VicWord 一个纯php的分词
 
+<a href="https://github.com/996icu/996.ICU/blob/master/LICENSE"><img src="https://img.shields.io/badge/support-996.icu-red.svg"></a>
 
 ## tips
 
