@@ -14,7 +14,7 @@ composer require lizhichao/word
 - 含有3种切分方法
     - `getWord` 长度优先切分 。最快
     - `getShortWord` 细粒度切分。比最快慢一点点
-    - `getAutoWord` 自动切分 (在相邻词做了递归) 。效果最好
+    - `getAutoWord` 自动切分  。效果最好
 - 可自定义词典，自己添加词语到词库，词库支持文本格式`json`和二级制格式`igb`
 二进制格式词典小，加载快
 - `dict.igb`含有175662个词，欢迎大家补充词语到 `dict.txt` ，格式(词语 \t idf \t 词性)
