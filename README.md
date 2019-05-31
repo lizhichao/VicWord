@@ -67,7 +67,7 @@ $dict->save();
 ```
 
 ## demo 
-[demo](http://blogs.yxsss.com/my/fc)
+[demo](http://blogs.vicsdf.com/my/fc)
 
 ## 该作者的其他软件
 [一个极简的高性能框架，可在php-fpm或者swoole异步协程环境运行](https://github.com/lizhichao/one)
