@@ -2,12 +2,14 @@
 
 <a href="https://github.com/996icu/996.ICU/blob/master/LICENSE"><img src="https://img.shields.io/badge/support-996.icu-red.svg"></a>
 
+QQ交流群: 731475644
 
 ## 安装
 
 ```shell
 composer require lizhichao/word
 ```
+
 
 
 ## 分词说明
