@@ -28,12 +28,24 @@ class VicDict
     public function __construct($type = 'igb')
     {
         $this->type = $type;
-        if (file_exists(_VIC_WORD_DICT_PATH_)) {
-            if ($type == 'igb') {
-                $this->word = igbinary_unserialize(file_get_contents(_VIC_WORD_DICT_PATH_));
-            } else {
-                $this->word = json_decode(file_get_contents(_VIC_WORD_DICT_PATH_), true);
-            }
+        
+        // set default dict path
+        $dictPath = \defined('\\_VIC_WORD_DICT_PATH_') ? \_VIC_WORD_DICT_PATH_ : \dirname(__DIR__) . "/Data/dict.{$type}";
+        
+        if( ! \file_exists($dictPath)) {
+            throw new \Exception("Invalid dict file: {$dictPath}");
+        }
+
+        // check dict type
+        switch ($this->type) {
+            case 'igb':
+                $this->word = \igbinary_unserialize(\file_get_contents($dictPath));
+                break;
+            case 'json':
+                $this->word = \json_decode(\file_get_contents($dictPath), true);
+                break;
+            default:
+                throw new \Exception("Invalid dict type.");
         }
     }
 
