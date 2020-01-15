@@ -1,20 +1,15 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: tanszhe
- * Date: 2017/12/21
- * Time: 下午8:16
+ * Add word to dict.
  */
+
 namespace Lizhichao\Word;
 
 class VicDict
 {
     private $word = [];
-    /**
-     * 词典地址
-     * @var string
-     */
+
     private $code = 'utf-8';
 
     private $end = ['\\' => 1];
@@ -25,43 +20,62 @@ class VicDict
 
     private $type = 'igb';
 
+    private $dictPath = '';
+
     public function __construct($type = 'igb')
     {
         $this->type = $type;
-        
+
         // set default dict path
-        $dictPath = \defined('\\_VIC_WORD_DICT_PATH_') ? \_VIC_WORD_DICT_PATH_ : \dirname(__DIR__) . "/Data/dict.{$type}";
-        
-        if( ! \file_exists($dictPath)) {
-            throw new \Exception("Invalid dict file: {$dictPath}");
+        $this->dictPath = \defined('\\_VIC_WORD_DICT_PATH_') ? \_VIC_WORD_DICT_PATH_ : \dirname(__DIR__) . "/Data/dict.{$type}";
+
+        if ( ! \file_exists($this->dictPath)) {
+            throw new \Exception("Invalid dict file: {$this->dictPath}");
         }
 
         // check dict type
-        switch ($this->type) {
+        switch ($type) {
             case 'igb':
-                $this->word = \igbinary_unserialize(\file_get_contents($dictPath));
+                if ( ! \function_exists('\\igbinary_unserialize')) {
+                    throw new \Exception('Requires igbinary PHP extension.');
+                }
+
+                $this->word = \igbinary_unserialize(\file_get_contents($this->dictPath));
                 break;
             case 'json':
-                $this->word = \json_decode(\file_get_contents($dictPath), true);
+                $this->word = \json_decode(\file_get_contents($this->dictPath), true);
                 break;
             default:
-                throw new \Exception("Invalid dict type.");
+                throw new \Exception('Invalid dict type.');
         }
     }
 
     /**
-     * @param string $word
-     * @param null|string $x 词性
+     * @param string      $word
+     * @param null|string $x    词性
+     *
      * @return bool
      */
     public function add($word, $x = null)
     {
         $this->end = ['\\x' => $x] + $this->default_end;
-        $word = $this->filter($word);
+        $word      = $this->filter($word);
         if ($word) {
             return $this->merge($word);
         }
+
         return false;
+    }
+
+    public function save()
+    {
+        if ('igb' === $this->type) {
+            $str = \igbinary_serialize($this->word);
+        } else {
+            $str = \json_encode($this->word);
+        }
+
+        return \file_put_contents($this->dictPath, $str);
     }
 
     private function merge($word)
@@ -70,56 +84,46 @@ class VicDict
         $br = $ar;
         $wr = &$this->word;
         foreach ($ar as $i => $v) {
-            array_shift($br);
-            if (!isset($wr[$v])) {
+            \array_shift($br);
+            if ( ! isset($wr[$v])) {
                 $wr[$v] = $this->dict($br, $this->end);
+
                 return true;
-            } else {
-                $wr = &$wr[$v];
             }
+            $wr = &$wr[$v];
         }
-        if (!isset($wr[$this->end_key])) {
+        if ( ! isset($wr[$this->end_key])) {
             foreach ($this->end as $k => $v) {
                 $wr[$k] = $v;
                 $wr[$k] = $v;
             }
         }
-        return true;
-    }
 
-    public function save()
-    {
-        if ($this->type == 'igb') {
-            $str = igbinary_serialize($this->word);
-        } else {
-            $str = json_encode($this->word);
-        }
-        return file_put_contents(_VIC_WORD_DICT_PATH_, $str);
+        return true;
     }
 
     private function filter($word)
     {
-        return str_replace(["\n", "\t"], '', trim($word));
+        return \str_replace(["\n", "\t", "\r"], '', \trim($word));
     }
-
 
     private function dict($arr, $v, $i = 0)
     {
         if (isset($arr[$i])) {
             return [$arr[$i] => $this->dict($arr, $v, $i + 1)];
-        } else {
-            return $v;
         }
+
+        return $v;
     }
 
     private function toArr($str)
     {
-        $l = mb_strlen($str, $this->code);
+        $l = \mb_strlen($str, $this->code);
         $r = [];
-        for ($i = 0; $i < $l; $i++) {
-            $r[] = mb_substr($str, $i, 1, $this->code);
+        for ($i = 0; $i < $l; ++$i) {
+            $r[] = \mb_substr($str, $i, 1, $this->code);
         }
+
         return $r;
     }
-
 }
