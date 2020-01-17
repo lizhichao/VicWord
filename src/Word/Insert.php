@@ -12,27 +12,43 @@ class Insert
 
     private $end = ['\\' => 1];
 
-    private $default_end = ['\\' => 1];
+    private $defaultEnd = ['\\' => 1];
 
-    private $end_key = '\\';
+    private $endKey = '\\';
 
-    private $type = 'igb';
+    private $dictType = 'igb';
 
     private $dictPath = '';
 
-    public function __construct($type = 'igb')
+    /**
+     * @param array $args
+     *                    $args['dictType'] 字典类型，可选，默认为 'igb'
+     *                    $args['dictPath'] 字典绝对路径，可选
+     */
+    public function __construct(array $args = [])
     {
-        $this->type = $type;
+        [
+            'dictType' => $this->dictType,
+            'dictPath' => $this->dictPath,
+        ] = \array_merge([
+            'dictType' => 'igb',
+            'dictPath' => '',
+        ], $args);
 
-        // set default dict path
-        $this->dictPath = \defined('\\_VIC_WORD_DICT_PATH_') ? \_VIC_WORD_DICT_PATH_ : \dirname(__DIR__) . "/Data/dict.{$type}";
+        if ( ! $this->dictPath) {
+            if ( ! $this->dictType) {
+                throw new \Exception('Empty dictionary type.');
+            }
+
+            $this->dictPath = \dirname(__DIR__) . "/Data/dict.{$this->dictType}";
+        }
 
         if ( ! \file_exists($this->dictPath)) {
-            throw new \Exception("Invalid dict file: {$this->dictPath}");
+            throw new \Exception("Invalid dictionary file: {$this->dictPath}");
         }
 
         // check dict type
-        switch ($type) {
+        switch ($this->dictType) {
             case 'igb':
                 if ( ! \function_exists('\\igbinary_unserialize')) {
                     throw new \Exception('Requires igbinary PHP extension.');
@@ -46,19 +62,19 @@ class Insert
 
                 break;
             default:
-                throw new \Exception('Invalid dict type.');
+                throw new \Exception('Invalid dictionary type.');
         }
     }
 
     /**
-     * @param string      $word
-     * @param string|null $x    词性
+     * 添加词.
      *
-     * @return bool
+     * @param string      $word 词
+     * @param string|null $x    词性
      */
-    public function add($word, $x = null)
+    public function add(string $word, string $x = null): bool
     {
-        $this->end = ['\\x' => $x] + $this->default_end;
+        $this->end = ['\\x' => $x] + $this->defaultEnd;
         $word      = $this->filter($word);
 
         if ($word) {
@@ -68,18 +84,21 @@ class Insert
         return false;
     }
 
-    public function save()
+    /**
+     * 保存词典.
+     */
+    public function save(): bool
     {
-        if ('igb' === $this->type) {
+        if ('igb' === $this->dictType) {
             $str = \igbinary_serialize($this->word);
         } else {
-            $str = \json_encode($this->word);
+            $str = \json_encode($this->word, \JSON_UNESCAPED_UNICODE | \JSON_PRETTY_PRINT);
         }
 
-        return \file_put_contents($this->dictPath, $str);
+        return (bool) \file_put_contents($this->dictPath, $str);
     }
 
-    private function merge($word)
+    private function merge(string $word): bool
     {
         $ar = $this->toArr($word);
         $br = $ar;
@@ -96,7 +115,7 @@ class Insert
             $wr = &$wr[$v];
         }
 
-        if ( ! isset($wr[$this->end_key])) {
+        if ( ! isset($wr[$this->endKey])) {
             foreach ($this->end as $k => $v) {
                 $wr[$k] = $v;
                 $wr[$k] = $v;
@@ -106,12 +125,12 @@ class Insert
         return true;
     }
 
-    private function filter($word)
+    private function filter(string $word): string
     {
         return \str_replace(["\n", "\t", "\r"], '', \trim($word));
     }
 
-    private function dict($arr, $v, $i = 0)
+    private function dict(array $arr, array $v, int $i = 0)
     {
         if (isset($arr[$i])) {
             return [$arr[$i] => $this->dict($arr, $v, $i + 1)];
@@ -120,7 +139,7 @@ class Insert
         return $v;
     }
 
-    private function toArr($str)
+    private function toArr(string $str): array
     {
         $l = \mb_strlen($str, $this->code);
         $r = [];
