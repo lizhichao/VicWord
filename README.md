@@ -1,16 +1,18 @@
-# VicWord 一个纯php的分词
+# php-participle 一个纯php的分词
 
 <a href="https://github.com/996icu/996.ICU/blob/master/LICENSE"><img src="https://img.shields.io/badge/support-996.icu-red.svg"></a>
 
 QQ交流群: 731475644
 
+## 环境需求
+- PHP7.3+
+- PHP igbinary 扩展
+
 ## 安装
 
 ```shell
-composer require lizhichao/word
+composer require kmvan/php-participle
 ```
-
-
 
 ## 分词说明
 - 含有3种切分方法
@@ -36,20 +38,20 @@ $arr = $fc->getAutoWord('北京大学生喝进口红酒，在北京大学生活�
 //北京|大学生|喝|进口|红酒|，|在|北京大学|生活区|喝|进口|红酒
 
 //对比
-//qq的分词 http://nlp.qq.com/semantic.cgi#page2 
+//qq的分词 http://nlp.qq.com/semantic.cgi#page2
 //百度的分词 http://ai.baidu.com/tech/nlp/lexical
 
 ```
 ## 分词速度
-机器阿里云 `Intel(R) Xeon(R) Platinum 8163 CPU @ 2.50GHz`   
-`getWord` 每秒140w字  
-`getShortWord` 每秒138w字  
-`getAutoWord` 每秒40w字  
+机器阿里云 `Intel(R) Xeon(R) Platinum 8163 CPU @ 2.50GHz`
+`getWord` 每秒140w字
+`getShortWord` 每秒138w字
+`getAutoWord` 每秒40w字
 测试文本在百度百科拷贝的一段5000字的文本
 
 ## 制作词库
-- 词库支持utf-8的任意字符   
-- 词典大小不影响 分词速度  
+- 词库支持utf-8的任意字符
+- 词典大小不影响 分词速度
 
 只有一个方法 VicDict->add(词语,词性 = null)
 ```php
@@ -68,7 +70,7 @@ $dict->add('中国','n');
 $dict->save();
 ```
 
-## demo 
+## demo
 [demo](http://blogs.vicsdf.com/my/fc)
 
 ## 该作者的其他软件
