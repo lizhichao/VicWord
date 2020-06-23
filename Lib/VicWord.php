@@ -21,10 +21,12 @@ class VicWord
      */
     private $x = '\\x';
 
-    public function __construct($type = 'igb')
+    public function __construct($dictPath = '')
     {
-        // set default dict path
-        $dictPath = \defined('\\_VIC_WORD_DICT_PATH_') ? \_VIC_WORD_DICT_PATH_ : \dirname(__DIR__) . "/Data/dict.{$type}";
+        if($dictPath === ''){
+            $dictPath = dirname(__DIR__) . '/Data/dict.json';
+        }
+        $type = pathinfo($dictPath)['extension'];
 
         if ( ! \file_exists($dictPath)) {
             throw new \Exception("Invalid dict file: {$dictPath}");

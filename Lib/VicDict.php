@@ -18,23 +18,30 @@ class VicDict
 
     private $end_key = '\\';
 
-    private $type = 'igb';
+    private $type = '';
 
     private $dictPath = '';
 
-    public function __construct($type = 'igb')
+    /**
+     * VicDict constructor.
+     * @param string $path 词库地址
+     * @throws \Exception
+     */
+    public function __construct($path = '')
     {
-        $this->type = $type;
-
-        // set default dict path
-        $this->dictPath = \defined('\\_VIC_WORD_DICT_PATH_') ? \_VIC_WORD_DICT_PATH_ : \dirname(__DIR__) . "/Data/dict.{$type}";
+        if($path === ''){
+            $this->dictPath = dirname(__DIR__) . '/Data/dict.json';
+        }else{
+            $this->dictPath = $path;
+        }
+        $this->type = pathinfo($this->dictPath)['extension'];
 
         if ( ! \file_exists($this->dictPath)) {
             throw new \Exception("Invalid dict file: {$this->dictPath}");
         }
 
         // check dict type
-        switch ($type) {
+        switch ($this->type) {
             case 'igb':
                 if ( ! \function_exists('\\igbinary_unserialize')) {
                     throw new \Exception('Requires igbinary PHP extension.');

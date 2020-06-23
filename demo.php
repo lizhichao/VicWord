@@ -6,15 +6,14 @@
  * Time: 下午7:46
  */
 //定义词典文件路径
-define('_VIC_WORD_DICT_PATH_',__DIR__.'/Data/dict.igb');
 
-require __DIR__.'/../../../vendor/autoload.php';
+require __DIR__.'/Lib/VicWord.php';
 
 use Lizhichao\Word\VicWord;
 
 
 //type: 词典格式
-$fc = new VicWord('igb');
+$fc = new VicWord();
 
 //长度优先分词
 $ar = $fc->getWord('聚知台是一个及时沟通工具');
