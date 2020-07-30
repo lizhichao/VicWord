@@ -83,7 +83,7 @@ class VicWord
 
     private function filter($str)
     {
-        return \strtolower(\trim($str));
+        return \strtolower($str);
     }
 
     private function getD(&$str, $i)

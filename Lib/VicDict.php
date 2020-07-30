@@ -111,7 +111,7 @@ class VicDict
 
     private function filter($word)
     {
-        return \str_replace(["\n", "\t", "\r"], '', \trim($word));
+        return \str_replace(["\n", "\t", "\r"], '', $word);
     }
 
     private function dict($arr, $v, $i = 0)
