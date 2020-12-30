@@ -70,7 +70,9 @@ $dict->save();
 [demo](http://blogs.vicsdf.com/my/fc)
 
 ## 该作者的其他软件
-[一个极简高性能php框架，支持[swoole | php-fpm ]环境](https://github.com/lizhichao/one)
+* [一个极简高性能php框架，支持[swoole | php-fpm ]环境](https://github.com/lizhichao/one)
+* [clickhouse tcp 客户端](https://github.com/lizhichao/one-ck)
+
 
 
 
